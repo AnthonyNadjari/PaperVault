@@ -68,6 +68,8 @@ Si tu vois une erreur du type **Jekyll**, **docs**, **style.scss** ou **pages bu
 
 ### Secrets pour que l’app en ligne utilise ton Supabase
 
+**Si la page https://anthonynadjari.github.io/PaperVault/ est blanche**, c’est que les variables Supabase ne sont pas définies en production. Ajoute les 2 secrets ci‑dessous, puis relance le workflow « Deploy to GitHub Pages » (Actions → run).
+
 1. **Settings** → **Secrets and variables** → **Actions**.
 2. **New repository secret** pour chaque variable :
    - `VITE_SUPABASE_URL` : l’URL de ton projet (ex. `https://xxxxx.supabase.co`).
