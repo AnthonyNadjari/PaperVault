@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { StorageImage } from '../components/StorageImage'
 import { getDocuments } from '../lib/documents'
 import type { Document } from '../types'
 
@@ -40,9 +41,8 @@ export default function Photos() {
               className="relative aspect-square w-full overflow-hidden rounded-lg bg-neutral-100"
             >
               {thumb ? (
-                <img
-                  src={thumb}
-                  alt=""
+                <StorageImage
+                  pathOrUrl={thumb}
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />

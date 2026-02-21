@@ -16,13 +16,16 @@ export async function compressImage(file: File): Promise<File> {
 
 export async function uploadReceiptImage(docId: string, file: File, index: number): Promise<string> {
   const compressed = await compressImage(file)
-  const ext = (compressed.name.split('.').pop() ?? 'jpg').toLowerCase() || 'jpg'
-  const key = `${docId}/${index}.${ext}`
+  const key = `${docId}/${index}.jpg`
   const { error } = await supabase.storage.from(BUCKET).upload(key, compressed, {
     upsert: true,
-    contentType: compressed.type,
+    contentType: 'image/jpeg',
   })
-  if (error) throw error
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(key)
-  return data.publicUrl
+  if (error) {
+    if (error.message?.toLowerCase().includes('bucket') && error.message?.toLowerCase().includes('not found')) {
+      throw new Error('BUCKET_NOT_FOUND')
+    }
+    throw error
+  }
+  return key
 }

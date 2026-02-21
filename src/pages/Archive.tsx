@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { StorageImage } from '../components/StorageImage'
 import { getDocuments, searchDocuments } from '../lib/documents'
 import type { Document } from '../types'
 
@@ -93,9 +94,8 @@ export default function Archive() {
                     >
                       <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
                         {doc.image_urls[0] ? (
-                          <img
-                            src={doc.image_urls[0]}
-                            alt=""
+                          <StorageImage
+                            pathOrUrl={doc.image_urls[0]}
                             className="h-full w-full object-cover"
                           />
                         ) : (

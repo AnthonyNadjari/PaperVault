@@ -122,7 +122,12 @@ export default function Scan() {
       setStep('done')
       navigate(`/doc/${doc.id}`)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur')
+      const msg = err instanceof Error ? err.message : 'Erreur'
+      setError(
+        msg === 'BUCKET_NOT_FOUND'
+          ? 'Crée le bucket « receipts » dans Supabase : Storage → New bucket → nom « receipts » → Public.'
+          : msg
+      )
       setStep('idle')
     }
   }, [files, navigate])

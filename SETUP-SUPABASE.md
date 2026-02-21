@@ -2,9 +2,16 @@
 
 Tu as déjà exécuté le SQL (tables). Il reste :
 
-## 1. Bucket pour les photos
+## 0. Si tu as « new row violates row level security policy »
 
-**Storage** → **New bucket** → nom : **`receipts`** → coche **Public** → Create.
+Dans **SQL Editor**, exécute le fichier **`supabase/migrations/002_fix_rls.sql`** (copier-coller tout le contenu → Run). Ça corrige les politiques RLS sur les tables et le storage.
+
+## 1. Bucket pour les photos (obligatoire)
+
+Si l’app affiche « bucket not found » au scan, c’est qu’il manque ce bucket.
+
+**Storage** → **New bucket** → nom exact : **`receipts`** → Create.  
+Tu peux le laisser **privé** : l’app utilise des URLs signées pour afficher les images.
 
 ## 2. (Optionnel) Parsing IA
 

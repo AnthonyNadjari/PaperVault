@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { StorageImage } from '../components/StorageImage'
 import { getDocument, getLineItems, updateDocument, upsertLineItems, deleteDocument } from '../lib/documents'
 import type { Document, LineItem, DocumentType } from '../types'
 import { CATEGORIES } from '../types'
@@ -102,9 +103,8 @@ export default function DocumentDetail() {
       {/* Carousel */}
       <div className="relative aspect-[4/3] w-full bg-neutral-200">
         {currentImage ? (
-          <img
-            src={currentImage}
-            alt=""
+          <StorageImage
+            pathOrUrl={currentImage}
             className="h-full w-full object-contain"
           />
         ) : (
